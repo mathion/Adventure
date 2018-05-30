@@ -32,6 +32,7 @@ public class AdvRoom extends AdvRoomStub {
 	private int roomNumber;
 	private String[] description;
 	private AdvMotionTableEntry[] motionTable;
+	private boolean hasBeenVisited;
 
 	// private constructor
 	// to prevent calling the class constructor from outside
@@ -146,6 +147,7 @@ public class AdvRoom extends AdvRoomStub {
 	 *            The new state of the "visited" flag
 	 */
 	public void setVisited(boolean flag) {
+		//hasBeenVisited = flag;
 		super.setVisited(flag); // Replace with your code
 	}
 
@@ -157,6 +159,7 @@ public class AdvRoom extends AdvRoomStub {
 	 * @return true if the room has been visited; false otherwise
 	 */
 	public boolean hasBeenVisited() {
+		//return hasBeenVisited;
 		return super.hasBeenVisited(); // Replace with your code
 	}
 

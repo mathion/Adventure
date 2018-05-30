@@ -25,6 +25,17 @@ import java.util.Scanner;
  */
 
 public class AdvObject extends AdvObjectStub {
+	
+	
+	
+	private String objName;
+	private String description;
+	//room number that the object resides in?
+	private int roomNum;
+	
+	private AdvObject() {
+		
+	}
 
 /* Method: getName() */
 /**
@@ -34,6 +45,7 @@ public class AdvObject extends AdvObjectStub {
  * @return The name of the object
  */
 	public String getName() {
+		//return objName;
 		return super.getName(); // Replace with your code
 	}
 
@@ -47,6 +59,7 @@ public class AdvObject extends AdvObjectStub {
  * @return The description of the object
  */
 	public String getDescription() {
+		//return description;
 		return super.getDescription(); // Replace with your code
 	}
 
@@ -59,6 +72,8 @@ public class AdvObject extends AdvObjectStub {
  * @return The room number in which the object initially resides
  */
 	public int getInitialLocation() {
+		
+		//return roomNum;
 		return super.getInitialLocation(); // Replace with your code
 	}
 
@@ -75,6 +90,17 @@ public class AdvObject extends AdvObjectStub {
 	 * @return the object if an object is successfully read; null at end of file
 	 */
 	public static AdvObject readFromFile(Scanner scan) {
+		AdvObject object = new AdvObject();
+		
+		//setting my values
+		object.objName = scan.nextLine();
+		scan.nextLine();
+		object.description = scan.nextLine();
+		scan.nextLine();
+		object.roomNum = scan.nextInt();
+		
+		
+		//return object;
 		return AdvObjectStub.readFromFile(scan); // Replace with your code
 	}
 
