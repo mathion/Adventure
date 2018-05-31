@@ -45,8 +45,8 @@ public class AdvObject extends AdvObjectStub {
  * @return The name of the object
  */
 	public String getName() {
-		//return objName;
-		return super.getName(); // Replace with your code
+		return objName;
+//		return super.getName(); // Replace with your code
 	}
 
 /* Method: getDescription() */
@@ -59,8 +59,8 @@ public class AdvObject extends AdvObjectStub {
  * @return The description of the object
  */
 	public String getDescription() {
-		//return description;
-		return super.getDescription(); // Replace with your code
+		return description;
+//		return super.getDescription(); // Replace with your code
 	}
 
 
@@ -73,8 +73,8 @@ public class AdvObject extends AdvObjectStub {
  */
 	public int getInitialLocation() {
 		
-		//return roomNum;
-		return super.getInitialLocation(); // Replace with your code
+		return roomNum;
+//		return super.getInitialLocation(); // Replace with your code
 	}
 
 	/* Method: readFromFile(scan) */
@@ -93,19 +93,17 @@ public class AdvObject extends AdvObjectStub {
 		AdvObject object = new AdvObject();
 		
 		//setting my values
-		object.objName = scan.nextLine();
-		scan.nextLine();
-		object.description = scan.nextLine();
+		object.objName = scan.next();
+		//scan.nextLine();
+		object.description = scan.next();
 		scan.nextLine();
 		object.roomNum = scan.nextInt();
 		
 		
-		//return object;
-		return AdvObjectStub.readFromFile(scan); // Replace with your code
+		return object;
+		//return AdvObjectStub.readFromFile(scan); // Replace with your code
 	}
 
-/* Private instance variables */
-	// Add your own instance variables here
 
 }
 
