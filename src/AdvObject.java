@@ -24,19 +24,10 @@ import java.util.Scanner;
  * this class show how to use the initialized data structure.
  */
 
-public class AdvObject extends AdvObjectStub {
-	
-	
-	
-	private String objName;
+public class AdvObject {
+	private String name;
+	private int roomNumber;
 	private String description;
-	//room number that the object resides in?
-	private int roomNum;
-	
-	private AdvObject() {
-		
-	}
-
 /* Method: getName() */
 /**
  * Returns the object name, which is the word used to refer to it.
@@ -45,8 +36,7 @@ public class AdvObject extends AdvObjectStub {
  * @return The name of the object
  */
 	public String getName() {
-		return objName;
-//		return super.getName(); // Replace with your code
+		return name;
 	}
 
 /* Method: getDescription() */
@@ -60,7 +50,6 @@ public class AdvObject extends AdvObjectStub {
  */
 	public String getDescription() {
 		return description;
-//		return super.getDescription(); // Replace with your code
 	}
 
 
@@ -72,9 +61,7 @@ public class AdvObject extends AdvObjectStub {
  * @return The room number in which the object initially resides
  */
 	public int getInitialLocation() {
-		
-		return roomNum;
-//		return super.getInitialLocation(); // Replace with your code
+		return roomNumber;
 	}
 
 	/* Method: readFromFile(scan) */
@@ -90,20 +77,28 @@ public class AdvObject extends AdvObjectStub {
 	 * @return the object if an object is successfully read; null at end of file
 	 */
 	public static AdvObject readFromFile(Scanner scan) {
+		if(!scan.hasNextLine()) {
+			return null;
+		}
 		AdvObject object = new AdvObject();
 		
-		//setting my values
-		object.objName = scan.next();
-		//scan.nextLine();
-		object.description = scan.next();
+		object.name = scan.nextLine();
+		object.description = scan.nextLine();
+		object.roomNumber = scan.nextInt();
 		scan.nextLine();
-		object.roomNum = scan.nextInt();
-		
-		
+		if (scan.hasNextLine()) {
+			scan.nextLine();
+		}
 		return object;
-		//return AdvObjectStub.readFromFile(scan); // Replace with your code
+	}
+	@Override
+	public String toString() {
+		return this.name;
 	}
 
+/* Private instance variables */
+	// Add your own instance variables here
 
 }
+	
 

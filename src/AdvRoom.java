@@ -17,7 +17,7 @@ import java.util.*;
  * <li>A room number, which must be greater than zero
  * <li>Its name, which is a one-line string identifying the room
  * <li>Its description, which is a multiline array describing the room
- * <li>A list of objects contained in the room
+ * <li>A objects of objects contained in the room
  * <li>A flag indicating whether the room has been visited
  * <li>A motion table specifying the exits and where they lead</li>
  * 
@@ -26,12 +26,13 @@ import java.util.*;
  * the initialized data structure.
  */
 
-public class AdvRoom extends AdvRoomStub {
+public class AdvRoom  {
 
 	private String name;
 	private int roomNumber;
 	private String[] description;
 	private AdvMotionTableEntry[] motionTable;
+	private ArrayList<AdvObject> objects;
 	private boolean hasBeenVisited;
 
 	// private constructor
@@ -39,7 +40,6 @@ public class AdvRoom extends AdvRoomStub {
 	// of this class -> the client must use the readFromFile
 	// method
 	private AdvRoom() {
-
 	}
 
 	/* Method: getRoomNumber() */
@@ -51,6 +51,10 @@ public class AdvRoom extends AdvRoomStub {
 	 */
 	public int getRoomNumber() {
 		return roomNumber;
+	}
+	@Override
+	public String toString() {
+		return this.name;
 	}
 
 	/* Method: getName() */
@@ -67,7 +71,7 @@ public class AdvRoom extends AdvRoomStub {
 	/* Method: getDescription() */
 	/**
 	 * Returns an array of strings that correspond to the long description of
-	 * the room (including the list of the objects in the room).
+	 * the room (including the objects of the objects in the room).
 	 * 
 	 * @usage String[] description = room.getDescription();
 	 * @return An array of strings giving the long description of the room
@@ -78,26 +82,26 @@ public class AdvRoom extends AdvRoomStub {
 
 	/* Method: addObject(obj) */
 	/**
-	 * Adds an object to the list of objects in the room.
+	 * Adds an object to the objects of objects in the room.
 	 * 
 	 * @usage room.addObject(obj);
 	 * @param The
 	 *            AdvObject to be added
 	 */
 	public void addObject(AdvObject obj) {
-		super.addObject(obj);
+		objects.add(obj);
 	}
 
 	/* Method: removeObject(obj) */
 	/**
-	 * Removes an object from the list of objects in the room.
+	 * Removes an object from the objects of objects in the room.
 	 * 
 	 * @usage room.removeObject(obj);
 	 * @param The
 	 *            AdvObject to be removed
 	 */
 	public void removeObject(AdvObject obj) {
-		super.removeObject(obj);
+		objects.remove(obj);
 	}
 
 	/* Method: containsObject(obj) */
@@ -110,7 +114,8 @@ public class AdvRoom extends AdvRoomStub {
 	 * @return true if the object is in the room, and false otherwise
 	 */
 	public boolean containsObject(AdvObject obj) {
-		return super.containsObject(obj);
+		return objects.contains(obj);
+	
 	}
 
 	/* Method: getObjectCount() */
@@ -121,18 +126,18 @@ public class AdvRoom extends AdvRoomStub {
 	 * @return The number of objects in the room
 	 */
 	public int getObjectCount() {
-		return super.getObjectCount();
+		return objects.size();
 	}
 
 	/* Method: getObject(index) */
 	/**
-	 * Returns the specified element from the list of objects in the room.
+	 * Returns the specified element from the objects of objects in the room.
 	 * 
 	 * @usage AdvObject obj = room.getObject(index);
 	 * @return The AdvObject at the specified index position
 	 */
 	public AdvObject getObject(int index) {
-		return super.getObject(index);
+		return objects.get(index);
 	}
 
 	/* Method: setVisited(flag) */
@@ -147,8 +152,7 @@ public class AdvRoom extends AdvRoomStub {
 	 *            The new state of the "visited" flag
 	 */
 	public void setVisited(boolean flag) {
-		//hasBeenVisited = flag;
-		super.setVisited(flag); // Replace with your code
+		hasBeenVisited = flag; // Replace with your code
 	}
 
 	/* Method: hasBeenVisited() */
@@ -159,8 +163,7 @@ public class AdvRoom extends AdvRoomStub {
 	 * @return true if the room has been visited; false otherwise
 	 */
 	public boolean hasBeenVisited() {
-		//return hasBeenVisited;
-		return super.hasBeenVisited(); // Replace with your code
+		return hasBeenVisited; // Replace with your code
 	}
 
 	/* Method: getMotionTable() */
@@ -189,6 +192,9 @@ public class AdvRoom extends AdvRoomStub {
 	 * @return a room if successfully read; null if at end of file
 	 */
 	public static AdvRoom readFromFile(Scanner scan) {
+		if(!scan.hasNextLine()) {
+			return null;
+		}
 
 		AdvRoom room = new AdvRoom();
 		room.roomNumber = scan.nextInt();
@@ -218,10 +224,12 @@ public class AdvRoom extends AdvRoomStub {
 						Integer.parseInt(parts[1]), null);
 			}
 			list2.add(entry);
+			
 		}
 		room.motionTable = 
 				list2.toArray(new 
 						AdvMotionTableEntry[list2.size()]);
+		room.objects  = new ArrayList<>();
 		return room;
 	}
 }
